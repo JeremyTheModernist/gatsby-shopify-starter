@@ -3,7 +3,7 @@ import { jsx, Flex, Styled, Container, Button } from "theme-ui";
 import React from "react";
 import { Link, graphql, navigate } from "gatsby";
 import Img from "gatsby-image";
-import Cart from "./Cart";
+import Cart from "./Cart/index";
 
 import StoreContext from "../StoreContext/index.js";
 
