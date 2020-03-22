@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Flex, Styled, Container, Button } from "theme-ui";
-import { css, keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
 import React from "react";
 import CheckoutButton from "./Buttons/CheckoutButton";
 import CartItem from "./CartItem/index";
@@ -8,9 +8,20 @@ import CartItem from "./CartItem/index";
 import StoreContext from "../../StoreContext/index";
 import { getTotalItems, getTotalPrice } from "./HelperFns/index";
 
-import { fadeInAnimation, fadeOutAnimation } from "../../styles/animations";
-
 var { useState, useEffect, useContext, createRef } = React;
+
+const CartContainer = styled.div`
+	&.hideCart {
+		visibility: hidden;
+		opacity: 0;
+		transition: 0.2s ease-in-out;
+	}
+	&.showCart {
+		visibility: visible;
+		opacity: 1;
+		transition: 0.2s ease-in-out;
+	}
+`;
 
 const Cart = () => {
 	var [store, setStore] = useContext(StoreContext);
@@ -60,46 +71,44 @@ const Cart = () => {
 				{totalItems} items in Cart
 			</Styled.li>
 
-			{(isVisible || store.isCartVisible) && (
-				<Container
-					variant="small"
-					css={css`
-						${isVisible || store.isCartVisible
-							? fadeInAnimation
-							: fadeOutAnimation}
-					`}
+			<CartContainer
+				// check to see if cart has been triggered by a click or adding a product.
+				// show or hide the cart depending on the user action.
+				className={
+					isVisible || store.isCartVisible ? "showCart" : "hideCart"
+				}
+				sx={{
+					width: `400px`,
+					padding: 1,
+					backgroundColor: "white",
+					marginTop: 2,
+					border: `1px solid rgba(0,0,0,.1)`,
+					borderRadius: 1,
+					boxShadow: 1,
+					position: "absolute",
+					right: 0
+				}}
+			>
+				{/* pass "added" state to Cart Item */}
+				<CartItem added={added} />
+				<Flex
 					sx={{
-						backgroundColor: "white",
-						marginTop: 2,
-						border: `1px solid rgba(0,0,0,.1)`,
-						borderRadius: 1,
-						boxShadow: 1,
-						position: "absolute",
-						right: 0
+						alignItems: "center",
+						marginTop: 2
 					}}
 				>
-					<>
-						<CartItem added={added} />
-						<Flex
-							sx={{
-								alignItems: "center",
-								marginTop: 2
-							}}
-						>
-							<Button variant="primary">View Cart</Button>
-							<CheckoutButton />
-							<Styled.li
-								sx={{
-									marginLeft: "auto",
-									color: "grays.0"
-								}}
-							>
-								${totalPrice}
-							</Styled.li>
-						</Flex>
-					</>
-				</Container>
-			)}
+					<Button variant="primary">View Cart</Button>
+					<CheckoutButton />
+					<Styled.li
+						sx={{
+							marginLeft: "auto",
+							color: "grays.0"
+						}}
+					>
+						${totalPrice}
+					</Styled.li>
+				</Flex>
+			</CartContainer>
 		</Flex>
 	);
 };
