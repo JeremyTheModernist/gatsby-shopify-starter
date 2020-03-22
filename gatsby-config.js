@@ -16,5 +16,10 @@ module.exports = {
 		`gatsby-plugin-sharp`,
 		`gatsby-plugin-theme-ui`,
 		`gatsby-plugin-emotion`
-	]
+	],
+	siteMetadata: {
+		title: "Sample Shopify Site",
+		description:
+			"This is an example Gatsby Shopify site. It is meant for illustration purposes only. Please do not attempt to buy anything."
+	}
 };

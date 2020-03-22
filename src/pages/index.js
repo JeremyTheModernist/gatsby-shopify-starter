@@ -8,12 +8,21 @@ import StoreContext from "../StoreContext/index";
 var { useContext } = React;
 
 const Index = props => {
-	var { allShopifyProduct } = props.data;
+	var {
+		allShopifyProduct,
+		site: { siteMetadata }
+	} = props.data;
 	console.log(allShopifyProduct);
 	var [store, setStore] = useContext(StoreContext);
 	console.log("my context!", store);
 	return (
 		<div>
+			<Styled.h1 sx={{ textAlign: "center" }}>
+				{siteMetadata.title}
+			</Styled.h1>
+			<Styled.p sx={{ textAlign: "center" }}>
+				{siteMetadata.description}
+			</Styled.p>
 			<Flex sx={{ flexFlow: "row wrap" }}>
 				{allShopifyProduct.edges.map(({ node }, i) => {
 					console.log(
@@ -50,6 +59,12 @@ export default Index;
 
 export const query = graphql`
 	query MyQuery {
+		site {
+			siteMetadata {
+				title
+				description
+			}
+		}
 		allShopifyProduct {
 			edges {
 				node {
