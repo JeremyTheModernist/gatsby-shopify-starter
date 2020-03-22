@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Flex, Styled, Container, Button } from "theme-ui";
 import React from "react";
-import StoreContext from "../StoreContext/index";
+import StoreContext from "../../../StoreContext/index";
 
 var { useState, useContext } = React;
 
