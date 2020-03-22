@@ -37,6 +37,7 @@ const CheckoutButton = props => {
 		// Do all of the Cart Manipulation without Shopify API,
 		// Only need Shopify API when a user checks out.
 		addItemsToShopify();
+		console.log("checkout button + state", client, added, ShopifyCheckout);
 		client.checkout
 			.create()
 			.then(checkout => {
