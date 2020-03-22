@@ -12,6 +12,7 @@ export const query = graphql`
 			variants {
 				shopifyId
 				price
+				id
 			}
 			description
 			images {

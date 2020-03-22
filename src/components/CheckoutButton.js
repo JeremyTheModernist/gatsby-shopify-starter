@@ -18,6 +18,7 @@ const CheckoutButton = props => {
 		setStore(curStore => {
 			// add all the cartItems to Shopify Checkout
 			curStore.added.forEach(item => {
+				console.log(item.variants[0].shopifyId);
 				var ShopifyItem = {
 					variantId: item.variants[0].shopifyId,
 					quantity: item.quantity
@@ -37,7 +38,12 @@ const CheckoutButton = props => {
 		// Do all of the Cart Manipulation without Shopify API,
 		// Only need Shopify API when a user checks out.
 		addItemsToShopify();
-		console.log("checkout button + state", client, added, ShopifyCheckout);
+		console.log(
+			"checkout button + state",
+			client,
+			"client checkout create",
+			client.checkout.create()
+		);
 		client.checkout
 			.create()
 			.then(checkout => {
@@ -56,6 +62,9 @@ const CheckoutButton = props => {
 						console.log("adding a checkout", res);
 						window.open(res.webUrl);
 					});
+			})
+			.catch(e => {
+				console.log("a checkout error occured", e);
 			});
 		// clear the local storage when a user decides to checkout
 		// this doesn't go into affect until after the user refreshes the window.
