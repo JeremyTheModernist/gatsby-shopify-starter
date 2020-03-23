@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import CheckoutButton from "./Buttons/CheckoutButton";
 import CartItem from "./CartItem/index";
+import { navigate } from "gatsby";
 
 import StoreContext from "../../StoreContext/index";
 import { getTotalItems, getTotalPrice } from "./HelperFns/index";
@@ -30,6 +31,7 @@ const Cart = () => {
 	var [isVisible, setVisible] = useState(false);
 
 	var totalItems = getTotalItems(added);
+	console.log("TOTAL ITEMS", totalItems);
 	var totalPrice = getTotalPrice(added);
 	var cartRef = createRef();
 
@@ -97,7 +99,15 @@ const Cart = () => {
 						marginTop: 2
 					}}
 				>
-					<Button variant="primary">View Cart</Button>
+					<Button
+						variant="primary"
+						onClick={() => {
+							navigate(`/cart`);
+							toggleCart();
+						}}
+					>
+						View Cart
+					</Button>
 					<CheckoutButton />
 					<Styled.li
 						sx={{
