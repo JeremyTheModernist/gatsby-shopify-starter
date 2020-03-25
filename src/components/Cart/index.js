@@ -103,7 +103,7 @@ const Cart = () => {
 						variant="primary"
 						onClick={() => {
 							navigate(`/cart`);
-							toggleCart();
+							setVisible(false);
 						}}
 					>
 						View Cart
