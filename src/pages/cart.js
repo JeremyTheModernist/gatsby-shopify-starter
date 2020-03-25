@@ -10,7 +10,7 @@ import {
 	getTotalPrice
 } from "../components/Cart/HelperFns/index";
 
-var { useContext, useState, createRef } = React;
+var { useContext } = React;
 
 const Cart = () => {
 	var [store, setStore] = useContext(Store);

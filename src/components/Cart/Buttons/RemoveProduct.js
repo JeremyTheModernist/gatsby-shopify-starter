@@ -9,12 +9,13 @@ var { useState, useContext } = React;
 const RemoveProduct = props => {
 	//  get access to all of my current items in my cart through the store.
 	var [store, setStore] = useContext(StoreContext);
+	var { added } = store;
 
 	//  a function to remove items from the cart
 	const removeCartItem = () => {
 		setStore(curStore => {
 			//  look at the current store and remove the on that the user has selected.
-			var updatedAdded = curStore.added.filter(item => {
+			var updatedAdded = added.filter(item => {
 				// need to return all items that DO NOT match the removed items title
 				// I get access to title from the Cart.js component;
 				return !item.title.includes(props.title);

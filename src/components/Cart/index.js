@@ -31,7 +31,6 @@ const Cart = () => {
 	var [isVisible, setVisible] = useState(false);
 
 	var totalItems = getTotalItems(added);
-	console.log("TOTAL ITEMS", totalItems);
 	var totalPrice = getTotalPrice(added);
 	var cartRef = createRef();
 

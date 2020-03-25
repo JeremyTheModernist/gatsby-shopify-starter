@@ -25,10 +25,8 @@ const initialeStoreState = {
 	//  your Checkout Items ( for shopify checkout experience, to use with addLineItem API)
 	//  this will only include the variantID, and the quantity properties
 	ShopifyCheckout: { lineItems: [] },
-	//  all your products, retrieved from Graphql
-	products: [],
 	//  all products that have been added to cart ( for use of displaying them in CART UI)
-	//  I get these items, by passing them in the Shopify Add Button ( which gets access to Product Data passed from the Product Template)
+	//  I get these items, by adding them through the AddToCart Button ( which gets access to Product Data passed from the Product Template)
 	added: [],
 	//  globally trigger Cart State when someone adds an item
 	isCartVisible: false
@@ -60,15 +58,3 @@ const ContextProvider = props => {
 };
 
 export default ContextProvider;
-
-// useEffect(() => {
-//     store.client.product.fetchAll().then(products => {
-//         console.log("DEM PRODUCTS", products);
-//         setStore(curStore => {
-//             return (store = {
-//                 ...curStore,
-//                 products
-//             });
-//         });
-//     });
-// }, []);
