@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import CheckoutButton from "./Buttons/CheckoutButton";
 import CartItem from "./CartItem/index";
-import { navigate } from "gatsby";
+import { Link } from "gatsby";
 
 import StoreContext from "../../StoreContext/index";
 import { getTotalItems, getTotalPrice } from "./HelperFns/index";
@@ -98,15 +98,17 @@ const Cart = () => {
 						marginTop: 2
 					}}
 				>
-					<Button
-						variant="primary"
-						onClick={() => {
-							navigate(`/cart`);
-							setVisible(false);
-						}}
-					>
-						View Cart
-					</Button>
+					<Link to="/cart">
+						<Button
+							variant="primary"
+							onClick={() => {
+								setVisible(false);
+							}}
+						>
+							View Cart
+						</Button>
+					</Link>
+
 					<CheckoutButton>
 						<Button
 							variant="secondary"
