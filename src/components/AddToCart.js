@@ -14,7 +14,7 @@ const AddToCart = props => {
 
 	//  retrieve the current store context;
 	var [store, setStore] = useContext(StoreContext);
-	var { client, ShopifyCheckout, added } = store;
+	var { added } = store;
 	// a function to increment cart items.
 	const incCount = () => {
 		setCount(curState => {
@@ -33,12 +33,11 @@ const AddToCart = props => {
 			added = addItemToCart(productDetails, added, count);
 			// return the newly updated cart
 			return (store = {
-				client,
-				added,
-				ShopifyCheckout
+				...curStore,
+				added
 			});
 		});
-		triggerCart(store, setStore);
+		triggerCart(setStore);
 	};
 
 	return (
