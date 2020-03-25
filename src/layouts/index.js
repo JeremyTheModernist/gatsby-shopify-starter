@@ -9,7 +9,7 @@ const Index = props => {
 		<Context>
 			<Flex
 				sx={{
-					height: `100vh`,
+					minHeight: `100vh`,
 					flexFlow: "column"
 				}}
 			>
