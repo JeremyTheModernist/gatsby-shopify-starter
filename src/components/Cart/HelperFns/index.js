@@ -20,7 +20,7 @@ export const getTotalItems = added => {
 	return totalItems;
 };
 
-export const addItemToCart = (productDetails, added, count) => {
+export const addCartItem = (productDetails, added, count) => {
 	//  added is all of the items currently added in my cart.
 	//  adding quantity to show how many of each item
 

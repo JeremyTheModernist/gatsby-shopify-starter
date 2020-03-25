@@ -2,7 +2,7 @@
 import { jsx, Flex, Styled, Container, Button } from "theme-ui";
 import React from "react";
 import StoreContext from "../StoreContext/index";
-import { triggerCart, addItemToCart } from "./Cart/HelperFns";
+import { triggerCart, addCartItem } from "./Cart/HelperFns";
 
 var { useState, useContext } = React;
 
@@ -28,9 +28,9 @@ const AddToCart = props => {
 		});
 	};
 
-	const addCartItem = () => {
+	const addItemToCart = () => {
 		setStore(curStore => {
-			added = addItemToCart(productDetails, added, count);
+			added = addCartItem(productDetails, added, count);
 			// return the newly updated cart
 			return (store = {
 				...curStore,
@@ -42,7 +42,7 @@ const AddToCart = props => {
 
 	return (
 		<Flex>
-			<Button variant="primary" onClick={addCartItem}>
+			<Button variant="primary" onClick={addItemToCart}>
 				Add Product
 			</Button>
 			<Button
