@@ -86,7 +86,7 @@ const Cart = () => {
 					marginTop: 2,
 					border: `1px solid rgba(0,0,0,.1)`,
 					borderRadius: 1,
-					boxShadow: 1,
+					boxShadow: 2,
 					position: "absolute",
 					right: 0
 				}}
@@ -108,11 +108,23 @@ const Cart = () => {
 					>
 						View Cart
 					</Button>
-					<CheckoutButton />
+					<CheckoutButton>
+						<Button
+							variant="secondary"
+							sx={{
+								backgroundColor: "white",
+								marginLeft: 1,
+								alignSelf: "flex-end"
+							}}
+						>
+							Checkout
+						</Button>
+					</CheckoutButton>
 					<Styled.li
 						sx={{
 							marginLeft: "auto",
-							color: "grays.0"
+							color: "grays.0",
+							marginRight: 1
 						}}
 					>
 						${totalPrice}

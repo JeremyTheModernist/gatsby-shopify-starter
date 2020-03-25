@@ -18,7 +18,7 @@ module.exports = {
 		`gatsby-plugin-emotion`
 	],
 	siteMetadata: {
-		title: "Sample Shopify Site",
+		title: "Modernist Design Books",
 		description:
 			"This is an example Gatsby Shopify site. It is meant for illustration purposes only. Please do not attempt to buy anything."
 	}
