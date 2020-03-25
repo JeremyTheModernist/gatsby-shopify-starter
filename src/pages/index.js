@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Flex, Styled, Container, Button, Text } from "theme-ui";
-import { graphql, navigate } from "gatsby";
+import { graphql, navigate, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
 import StoreContext from "../StoreContext/index";
@@ -41,14 +41,17 @@ const Index = props => {
 								}
 							></Img>
 							<Styled.h2>{node.title}</Styled.h2>
-							<Button
-								variant="primary"
-								onClick={() =>
-									navigate(`product/${node.handle}/`)
-								}
-							>
-								View Product
-							</Button>
+							<Link to={`product/${node.handle}/`}>
+								<Button
+									variant="primary"
+									// onClick={() =>
+									// 	navigate(`product/${node.handle}/`)
+									// }
+								>
+									View Product
+								</Button>
+							</Link>
+
 							{/* <Styled.p>{node.description}</Styled.p> */}
 						</Container>
 					);
