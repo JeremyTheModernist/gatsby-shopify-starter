@@ -34,7 +34,7 @@ const theme = {
 	sizes: [200, 400, 600, 800, 1000, 1200],
 	layout: {
 		full: {
-			width: 5,
+			maxWidth: 5,
 			margin: `auto`
 		},
 		medium: {
