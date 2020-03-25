@@ -15,7 +15,8 @@ const Navigation = () => {
 			sx={{
 				padding: 2,
 				alignItems: "baseline",
-				backgroundColor: "white"
+				backgroundColor: "white",
+				boxShadow: 0
 			}}
 		>
 			<Link
@@ -26,17 +27,17 @@ const Navigation = () => {
 				}}
 				to="/"
 			>
-				<Styled.li
+				<Styled.h4
 					sx={{
 						transition: props => `${props.transitions[0]}s`,
 						"&:hover": {
-							color: "text",
+							color: "primary",
 							transition: props => `${props.transitions[0]}s`
 						}
 					}}
 				>
 					Modernist Design Books
-				</Styled.li>
+				</Styled.h4>
 			</Link>
 			<Link
 				sx={{

@@ -35,6 +35,7 @@ const RemoveProduct = props => {
 				textTransform: "uppercase",
 				color: "grays.4",
 				cursor: "pointer",
+				width: "15%",
 				letterSpacing: props => `${props.letterSpacing[2]}em`,
 				transition: props => `${props.transitions[0]}s`,
 				"&:hover": {

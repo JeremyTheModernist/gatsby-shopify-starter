@@ -38,12 +38,6 @@ const CheckoutButton = props => {
 		// Do all of the Cart Manipulation without Shopify API,
 		// Only need Shopify API when a user checks out.
 		addItemsToShopify();
-		console.log(
-			"checkout button + state",
-			client,
-			"client checkout create",
-			client.checkout.create()
-		);
 		client.checkout
 			.create()
 			.then(checkout => {
@@ -70,20 +64,10 @@ const CheckoutButton = props => {
 		// this doesn't go into affect until after the user refreshes the window.
 		localStorage.clear();
 	};
-	return (
-		<>
-			<Button
-				variant="secondary"
-				onClick={createNewCheckout}
-				sx={{
-					backgroundColor: "white",
-					alignSelf: "flex-end"
-				}}
-			>
-				Checkout
-			</Button>
-		</>
-	);
+	//  I render props children, b/c I may want to make the logic of checkout available without dictating
+	//  the UI that surrounds it.
+	//  this allows me to use custom buttons
+	return <div onClick={createNewCheckout}>{props.children}</div>;
 };
 
 export default CheckoutButton;

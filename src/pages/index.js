@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button } from "theme-ui";
+import { jsx, Flex, Styled, Container, Button, Text } from "theme-ui";
 import { graphql, navigate } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
@@ -17,10 +17,13 @@ const Index = props => {
 	console.log("my context!", store);
 	return (
 		<div>
-			<Styled.h1 sx={{ textAlign: "center" }}>
+			<Text
+				variant={"display"}
+				sx={{ marginTop: 4, textAlign: "center" }}
+			>
 				{siteMetadata.title}
-			</Styled.h1>
-			<Styled.p sx={{ textAlign: "center" }}>
+			</Text>
+			<Styled.p sx={{ textAlign: "center", marginBottom: 3 }}>
 				{siteMetadata.description}
 			</Styled.p>
 			<Flex sx={{ flexFlow: "row wrap" }}>

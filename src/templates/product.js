@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx, Flex, Styled, Container, Button } from "theme-ui";
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import AddToCart from "../components/AddToCart";
+import OutOfStock from "../components/Cart/Buttons/OutOfStock";
 import Img from "gatsby-image";
 
 export const query = graphql`
@@ -11,6 +12,7 @@ export const query = graphql`
 			title
 			variants {
 				shopifyId
+				availableForSale
 				price
 				id
 			}
@@ -54,3 +56,15 @@ const Product = props => {
 };
 
 export default Product;
+
+// switch between in stock / out of stock
+// {shopifyProduct.variants[0].availableForSale ? (
+//     <AddToCart
+//         //  must use the variant id to specify to Shopify which "variant" a customer is buying
+//         //  pass down all of the data I retrieve for each product
+//         //  then I can use throughout all of my components
+//         productDetails={shopifyProduct}
+//     />
+// ) : (
+//     <OutOfStock />
+// )}

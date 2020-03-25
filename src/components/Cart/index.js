@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import CheckoutButton from "./Buttons/CheckoutButton";
 import CartItem from "./CartItem/index";
+import { navigate } from "gatsby";
 
 import StoreContext from "../../StoreContext/index";
 import { getTotalItems, getTotalPrice } from "./HelperFns/index";
@@ -30,6 +31,7 @@ const Cart = () => {
 	var [isVisible, setVisible] = useState(false);
 
 	var totalItems = getTotalItems(added);
+	console.log("TOTAL ITEMS", totalItems);
 	var totalPrice = getTotalPrice(added);
 	var cartRef = createRef();
 
@@ -84,7 +86,7 @@ const Cart = () => {
 					marginTop: 2,
 					border: `1px solid rgba(0,0,0,.1)`,
 					borderRadius: 1,
-					boxShadow: 1,
+					boxShadow: 2,
 					position: "absolute",
 					right: 0
 				}}
@@ -97,12 +99,32 @@ const Cart = () => {
 						marginTop: 2
 					}}
 				>
-					<Button variant="primary">View Cart</Button>
-					<CheckoutButton />
+					<Button
+						variant="primary"
+						onClick={() => {
+							navigate(`/cart`);
+							toggleCart();
+						}}
+					>
+						View Cart
+					</Button>
+					<CheckoutButton>
+						<Button
+							variant="secondary"
+							sx={{
+								backgroundColor: "white",
+								marginLeft: 1,
+								alignSelf: "flex-end"
+							}}
+						>
+							Checkout
+						</Button>
+					</CheckoutButton>
 					<Styled.li
 						sx={{
 							marginLeft: "auto",
-							color: "grays.0"
+							color: "grays.0",
+							marginRight: 1
 						}}
 					>
 						${totalPrice}

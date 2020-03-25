@@ -3,12 +3,19 @@ const theme = {
 		body:
 			'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif'
 	},
-	space: [0, 15, 30, 45, 60, 90],
+	space: [0, 15, 30, 45, 60, 90, 120],
 	lineHeights: [1, 1.25, 1.5],
 	letterSpacing: [-0.1, 0, 0.1],
 	fontSizes: [13, 16, 21, 26, 34, 48, 54, 63],
+	fontWeights: {
+		heading: "bold"
+	},
 	radii: [5, 8],
-	shadows: ["0px 8px 8px rgba(0,0,0,.25)", "0px 16px 16px rgba(0,0,0,.2)"],
+	shadows: [
+		"0px 4px 4px rgba(0,0,0,.1)",
+		"0px 8px 8px rgba(0,0,0,.15)",
+		"0px 16px 16px rgba(0,0,0,.2)"
+	],
 	colors: {
 		text: "#17171A",
 		primary: "#7300CE",
@@ -47,7 +54,6 @@ const theme = {
 			color: "white",
 			background: "primary",
 			padding: props => `${props.space[1]}px ${props.space[2]}px`,
-			marginRight: 1,
 			transition: props => `${props.transitions[0]}s`,
 			"&:hover": {
 				background: props => props.colors.grays[0],
@@ -62,13 +68,39 @@ const theme = {
 			border: props => `1px solid ${props.colors.primary}`,
 			backgroundColor: "grays.7",
 			padding: props => `${props.space[1]}px ${props.space[2]}px`,
-			marginRight: 1,
 			transition: props => `${props.transitions[0]}s`,
 			"&:hover": {
 				background: props => props.colors.primary,
 				color: "white",
 				transition: props => `${props.transitions[0]}s`
 			}
+		},
+		disabled: {
+			cursor: "pointer",
+			borderRadius: 0,
+			fontWeight: "bold",
+			color: "white",
+			backgroundColor: "grays.4",
+			padding: props => `${props.space[1]}px ${props.space[2]}px`
+		}
+	},
+	text: {
+		caps: {
+			textTransform: "uppercase",
+			letterSpacing: ".2em"
+		},
+		body: {
+			fontSize: [1]
+		},
+		display: {
+			letterSpacing: "-.01em",
+			fontWeight: "heading",
+			fontSize: 7
+		}
+	},
+	forms: {
+		medium: {
+			padding: 1
 		}
 	},
 	styles: {
@@ -90,6 +122,10 @@ const theme = {
 		},
 		h3: {
 			fontSize: 2
+		},
+		h4: {
+			fontSize: 1,
+			margin: 0
 		},
 		h5: {
 			fontSize: 0,
