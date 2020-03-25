@@ -2,36 +2,18 @@
 import { jsx, Styled } from "theme-ui";
 import React from "react";
 
+import { removeCartItem } from "../HelperFns/index";
 import StoreContext from "../../../StoreContext/index";
 
-var { useState, useContext } = React;
+var { useContext } = React;
 
 const RemoveProduct = props => {
 	//  get access to all of my current items in my cart through the store.
 	var [store, setStore] = useContext(StoreContext);
-	var { added } = store;
 
-	//  a function to remove items from the cart
-	const removeCartItem = () => {
-		setStore(curStore => {
-			//  look at the current store and remove the on that the user has selected.
-			var updatedAdded = added.filter(item => {
-				// need to return all items that DO NOT match the removed items title
-				// I get access to title from the Cart.js component;
-				return !item.title.includes(props.title);
-			});
-			// set the local storage:
-			localStorage.setItem(`added`, JSON.stringify(updatedAdded));
-			// now need to updated the store
-			return {
-				...curStore,
-				added: updatedAdded
-			};
-		});
-	};
 	return (
 		<Styled.h5
-			onClick={removeCartItem}
+			onClick={() => removeCartItem(store, setStore, props)}
 			sx={{
 				textTransform: "uppercase",
 				color: "grays.4",

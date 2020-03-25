@@ -1,9 +1,8 @@
 import React from "react";
 import StoreContext from "../StoreContext/index";
+import { addLocalStorageToCart } from "../components/Cart/HelperFns/index";
 
 import Client from "shopify-buy";
-
-import { useStaticQuery, graphql } from "gatsby";
 
 var { useEffect, useState } = React;
 
@@ -37,18 +36,7 @@ const ContextProvider = props => {
 	// createState
 	var [store, setStore] = useState(initialeStoreState);
 	useEffect(() => {
-		// get any items that we're added in a previous session
-		var added = JSON.parse(localStorage.getItem("added"));
-		// make sure added ( your cart ) has items. If it does, then ...
-		// update added with that current store
-		if (added !== null) {
-			setStore(curStore => {
-				return {
-					...curStore,
-					added
-				};
-			});
-		}
+		addLocalStorageToCart(setStore);
 	}, []);
 	return (
 		<StoreContext.Provider value={[store, setStore]}>
