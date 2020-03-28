@@ -37,16 +37,7 @@ const Cart = () => {
 		});
 	};
 	return (
-		<div
-			sx={{
-				flexFlow: "column wrap",
-				backgroundColor: "white",
-				padding: 2,
-				marginTop: 2,
-				borderRadius: 1,
-				boxShadow: 1
-			}}
-		>
+		<Container variant="cartWrapperLarge">
 			{getListItems(added, changeItemAmount)}
 			<Flex sx={{ marginTop: 2 }}>
 				<Styled.li
@@ -73,7 +64,7 @@ const Cart = () => {
 					</CheckoutButton>
 				</div>
 			</Flex>
-		</div>
+		</Container>
 	);
 };
 
