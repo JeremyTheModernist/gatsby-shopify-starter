@@ -41,6 +41,14 @@ export const components = {
 				opacity: 1,
 				transition: "0.2s ease-in-out"
 			}
+		},
+		cartWrapperLarge: {
+			flexFlow: "column wrap",
+			backgroundColor: "white",
+			padding: 2,
+			marginTop: 2,
+			borderRadius: 1,
+			boxShadow: 1
 		}
 	},
 	buttons: {
