@@ -42,7 +42,11 @@ const AddToCart = props => {
 
 	return (
 		<Flex>
-			<Button variant="primary" onClick={addItemToCart}>
+			<Button
+				variant="primary"
+				onClick={addItemToCart}
+				sx={{ marginRight: 1 }}
+			>
 				Add Product
 			</Button>
 			<Button
@@ -52,7 +56,13 @@ const AddToCart = props => {
 			>
 				+
 			</Button>
-			<Styled.h3 sx={{ color: "primary", marginLeft: 2, marginRight: 2 }}>
+			<Styled.h3
+				sx={{
+					color: "primary",
+					marginLeft: [1, 2, 2],
+					marginRight: [1, 2, 2]
+				}}
+			>
 				{count}
 			</Styled.h3>
 			<Button variant="secondary" onClick={decCount}>

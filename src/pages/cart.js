@@ -42,7 +42,7 @@ const Cart = () => {
 				flexFlow: "column wrap",
 				backgroundColor: "white",
 				padding: 2,
-				marginTop: 1,
+				marginTop: 2,
 				borderRadius: 1,
 				boxShadow: 1
 			}}
