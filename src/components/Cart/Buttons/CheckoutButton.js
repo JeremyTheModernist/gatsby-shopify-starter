@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button } from "theme-ui";
+import { jsx, Spinner } from "theme-ui";
 import React from "react";
 import StoreContext from "../../../StoreContext/index";
 import {
@@ -8,16 +8,17 @@ import {
 	resetCheckoutItems
 } from "../HelperFns";
 
-var { useContext } = React;
+var { useContext, useState } = React;
 
 const CheckoutButton = props => {
-	//  get access to the Variant ID from GraphQL
-	console.log("VARIANTE ID", props.variantId);
-
 	//  retrieve client from context;
 	var [store, setStore] = useContext(StoreContext);
+	var [state, setState] = useState(false);
 
 	const createNewCheckout = () => {
+		//  change to spinner
+		toggleSpinner();
+		console.log("spinner state", state);
 		// updated the Checkout Items right before a user clicks checkout
 		// Do all of the Cart Manipulation without Shopify API,
 		// Only need Shopify API when a user checks out.
@@ -30,10 +31,21 @@ const CheckoutButton = props => {
 		// this doesn't go into affect until after the user refreshes the window.
 		localStorage.clear();
 	};
+	const toggleSpinner = () => {
+		//  change to spinner
+		setState(true);
+		setTimeout(() => {
+			setState(false);
+		}, 4000);
+	};
 	//  I render props children, b/c I may want to make the logic of checkout available without dictating
 	//  the UI that surrounds it.
 	//  this allows me to use custom buttons
-	return <div onClick={createNewCheckout}>{props.children}</div>;
+	return (
+		<div onClick={createNewCheckout}>
+			{state ? <Spinner sx={{ marginLeft: 2 }} /> : props.children}
+		</div>
+	);
 };
 
 export default CheckoutButton;
