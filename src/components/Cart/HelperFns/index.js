@@ -131,7 +131,8 @@ export const createShopifyCheckout = ({ client, ShopifyCheckout }) => {
 				.addLineItems(checkout.id, [...ShopifyCheckout.lineItems])
 				.then(res => {
 					console.log("adding a checkout", res);
-					window.open(res.webUrl);
+					// open the checkout in a new tab:
+					window.open(res.webUrl, "_blank");
 				});
 		})
 		.catch(e => {
