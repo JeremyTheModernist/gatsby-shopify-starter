@@ -1,10 +1,9 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button } from "theme-ui";
+import { jsx, Flex, Styled } from "theme-ui";
 import RemoveProduct from "../Buttons/RemoveProduct";
 import Img from "gatsby-image";
-import React from "react";
 
-const CartItem = props => {
+const LineItems = props => {
 	var { added } = props;
 	return added.map((item, i) => {
 		return (
@@ -44,4 +43,4 @@ const CartItem = props => {
 	});
 };
 
-export default CartItem;
+export default LineItems;
