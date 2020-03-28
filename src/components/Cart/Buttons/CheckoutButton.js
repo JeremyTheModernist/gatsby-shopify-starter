@@ -14,7 +14,7 @@ const CheckoutButton = props => {
 	//  retrieve client from context;
 	var [store, setStore] = useContext(StoreContext);
 	var [state, setState] = useState(false);
-	console.log("browser name is", navigator.appName);
+
 	const createNewCheckout = () => {
 		//  change to spinner
 		toggleSpinner();
