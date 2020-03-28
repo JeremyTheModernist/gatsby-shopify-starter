@@ -3,7 +3,6 @@ export const type = {
 		body:
 			'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif'
 	},
-	space: [0, 15, 30, 45, 60, 90, 120],
 	lineHeights: [1, 1.25, 1.5],
 	letterSpacing: [-0.1, 0, 0.1],
 	fontSizes: [13, 16, 21, 26, 34, 48, 54, 63],

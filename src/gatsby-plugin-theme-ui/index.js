@@ -4,6 +4,7 @@ import { components } from "./components";
 const theme = {
 	...type,
 	...components,
+	space: [0, 15, 30, 45, 60, 90, 120],
 	radii: [5, 8],
 	shadows: [
 		"0px 4px 4px rgba(0,0,0,.1)",
