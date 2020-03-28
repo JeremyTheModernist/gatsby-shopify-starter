@@ -79,5 +79,10 @@ export const components = {
 			backgroundColor: "grays.4",
 			padding: props => `${props.space[1]}px ${props.space[2]}px`
 		}
+	},
+	forms: {
+		medium: {
+			padding: 1
+		}
 	}
 };
