@@ -21,10 +21,11 @@ export const components = {
 			borderBottom: props => `1px solid ${props.colors.grays[6]}`
 		},
 		cartWrapper: {
-			width: `400px`,
+			width: ["100%", 1, 1],
 			padding: 1,
 			backgroundColor: "white",
 			marginTop: 2,
+			marginRight: [null, null, 2],
 			border: `1px solid rgba(0,0,0,.1)`,
 			borderRadius: 1,
 			boxShadow: 2,

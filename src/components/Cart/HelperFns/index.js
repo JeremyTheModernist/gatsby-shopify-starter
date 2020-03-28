@@ -133,6 +133,8 @@ export const createShopifyCheckout = ({ client, ShopifyCheckout }) => {
 					console.log("adding a checkout", res);
 					// open the checkout in a new tab:
 					window.open(res.webUrl, "_blank");
+					// can also use this https://www.npmjs.com/package/detect-browser to provide different behaviors
+					// for different browsers, like open in same tab for safari to bypass pop-up blockers.
 				});
 		})
 		.catch(e => {

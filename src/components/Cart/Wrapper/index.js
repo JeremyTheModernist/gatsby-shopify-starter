@@ -51,8 +51,7 @@ const Wrapper = props => {
 				<Styled.li
 					sx={{
 						marginLeft: "auto",
-						color: "grays.0",
-						marginRight: 1
+						color: "grays.0"
 					}}
 				>
 					${totalPrice}

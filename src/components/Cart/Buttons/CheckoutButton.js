@@ -14,7 +14,7 @@ const CheckoutButton = props => {
 	//  retrieve client from context;
 	var [store, setStore] = useContext(StoreContext);
 	var [state, setState] = useState(false);
-
+	console.log("browser name is", navigator.appName);
 	const createNewCheckout = () => {
 		//  change to spinner
 		toggleSpinner();
@@ -36,7 +36,7 @@ const CheckoutButton = props => {
 		setState(true);
 		setTimeout(() => {
 			setState(false);
-		}, 4000);
+		}, 5000);
 	};
 	//  I render props children, b/c I may want to make the logic of checkout available without dictating
 	//  the UI that surrounds it.

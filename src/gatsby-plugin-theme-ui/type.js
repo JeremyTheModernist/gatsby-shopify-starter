@@ -20,7 +20,7 @@ export const type = {
 		display: {
 			letterSpacing: "-.01em",
 			fontWeight: "heading",
-			fontSize: 7
+			fontSize: [5, 6, 7]
 		},
 		interactive: {
 			toBlack: {

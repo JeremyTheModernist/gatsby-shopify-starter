@@ -17,15 +17,18 @@ const Index = props => {
 	console.log("my context!", store);
 	return (
 		<div>
-			<Text
-				variant={"display"}
-				sx={{ marginTop: 4, textAlign: "center" }}
-			>
-				{siteMetadata.title}
-			</Text>
-			<Styled.p sx={{ textAlign: "center", marginBottom: 3 }}>
-				{siteMetadata.description}
-			</Styled.p>
+			<div sx={{ marginLeft: 2, marginRight: 2 }}>
+				<Text
+					variant={"display"}
+					sx={{ marginTop: 4, textAlign: "center" }}
+				>
+					{siteMetadata.title}
+				</Text>
+				<Styled.p sx={{ textAlign: "center", marginBottom: 3 }}>
+					{siteMetadata.description}
+				</Styled.p>
+			</div>
+
 			<Flex sx={{ flexFlow: "row wrap" }}>
 				{allShopifyProduct.edges.map(({ node }, i) => {
 					console.log(

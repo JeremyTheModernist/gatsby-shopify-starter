@@ -47,7 +47,6 @@ const Cart = () => {
 		<Flex
 			ref={cartRef}
 			sx={{
-				position: "relative",
 				zIndex: 10
 			}}
 		>
