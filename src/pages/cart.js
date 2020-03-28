@@ -82,15 +82,7 @@ export default Cart;
 function getListItems(added, changeItemAmount) {
 	return added.map((item, i) => {
 		return (
-			<Flex
-				sx={{
-					paddingTop: 1,
-					paddingBottom: 1,
-					alignItems: "center",
-					borderBottom: props => `1px solid ${props.colors.grays[6]}`
-				}}
-				key={i}
-			>
+			<Container variant={"cartItem"} key={i}>
 				<li sx={{ width: "10%", marginRight: 2 }}>
 					<Img
 						fluid={item.images[0].localFile.childImageSharp.fluid}
@@ -130,7 +122,7 @@ function getListItems(added, changeItemAmount) {
 				<Styled.li sx={{ marginLeft: "auto" }}>
 					{item.quantity} x {item.variants[0].price}
 				</Styled.li>
-			</Flex>
+			</Container>
 		);
 	});
 }

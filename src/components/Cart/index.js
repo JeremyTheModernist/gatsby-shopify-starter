@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled } from "theme-ui";
+import { jsx, Flex, Styled, Text } from "theme-ui";
 import React from "react";
 
 import StoreContext from "../../StoreContext/index";
@@ -51,19 +51,9 @@ const Cart = () => {
 				zIndex: 10
 			}}
 		>
-			<Styled.li
-				onClick={toggleCart}
-				sx={{
-					cursor: "pointer",
-					transition: props => `${props.transitions[0]}s`,
-					"&:hover": {
-						color: "text",
-						transition: props => `${props.transitions[0]}s`
-					}
-				}}
-			>
+			<Text onClick={toggleCart} variant={"interactive.toBlack"}>
 				{totalItems} items in Cart
-			</Styled.li>
+			</Text>
 			<Wrapper {...WrapperProps} />
 		</Flex>
 	);
