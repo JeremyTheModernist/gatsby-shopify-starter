@@ -11,6 +11,7 @@ export const query = graphql`
 			handle
 			title
 			variants {
+				title
 				shopifyId
 				availableForSale
 				price

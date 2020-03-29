@@ -9,9 +9,9 @@ export const getTotalPrice = added => {
 	return cartTotal;
 };
 
+// used to display total number `3 items in cart`
 export const getTotalItems = added => {
 	// measure totals by grabbing them out of the store.
-	// used to display total number `3 items in cart`
 	var totalItems = 0;
 	//  need to measure all items in the "added" property
 	added.forEach(item => {
@@ -20,8 +20,8 @@ export const getTotalItems = added => {
 	return totalItems;
 };
 
+//  added is all of the items currently added in my cart.
 export const addCartItem = (productDetails, added, count) => {
-	//  added is all of the items currently added in my cart.
 	//  adding quantity to show how many of each item
 
 	//  figure out if the item exists in your cart already and what index it is
@@ -100,6 +100,8 @@ export const addCheckoutItems = ({ ShopifyCheckout }, setStore) => {
 		// add all the cartItems to Shopify Checkout
 		curStore.added.forEach(item => {
 			console.log(item.variants[0].shopifyId);
+			// when using ShopifyBuy API, you only need the Shopify Variant ID,
+			// and the variant quantity for each product
 			var ShopifyItem = {
 				variantId: item.variants[0].shopifyId,
 				quantity: item.quantity
