@@ -2,9 +2,13 @@
 // get the total value of all items in cart by retrieving all the added items and adding up price * quantity for each
 export const getTotalPrice = added => {
 	var cartTotal = added.reduce((totalPrice, product) => {
-		var { chosenVariant } = product;
-		var { price, quantity } = chosenVariant;
-		return (totalPrice += price * quantity);
+		if (product.chosenVariant) {
+			var { chosenVariant } = product;
+			var { price, quantity } = chosenVariant;
+			return (totalPrice += price * quantity);
+		} else {
+			return totalPrice;
+		}
 	}, 0);
 	return cartTotal;
 };
