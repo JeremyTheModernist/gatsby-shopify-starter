@@ -11,7 +11,8 @@ const AddToCart = props => {
 	var { productDetails } = props;
 	console.log("PROD DETAILS", productDetails);
 
-	var [variant, setVariant] = useState(null);
+	//  by default just use the first variant that shopify supplies. only update if a user selects a different one.
+	var [variant, setVariant] = useState(productDetails.variants[0]);
 
 	//  start product count at 1
 	var [count, setCount] = useState(1);
@@ -19,8 +20,6 @@ const AddToCart = props => {
 	//  retrieve the current store context;
 	var [store, setStore] = useContext(StoreContext);
 	var { added } = store;
-	console.log("YOUR VARIANTS", productDetails.variants);
-	console.log("ADDED ITEMS", added);
 
 	// a function to increment cart items.
 	const incCount = () => {
@@ -37,7 +36,7 @@ const AddToCart = props => {
 
 	const addItemToCart = () => {
 		setStore(curStore => {
-			added = addCartItem(productDetails, added, count);
+			added = addCartItem(productDetails, added, variant, count);
 			// return the newly updated cart
 			return (store = {
 				...curStore,
@@ -58,14 +57,22 @@ const AddToCart = props => {
 						variant="medium"
 						defaultValue={productDetails.variants[0].title}
 						onChange={e => {
-							// this function get's passed the event and the index of the item
-							console.log("SELECT MENU VALUE", e.target.value);
-							setVariant(e.target.value);
+							// this function get's passed the event
+							// e.target.value represents the selected variant shopify ID.
+							// use the Shopify ID to find the correct variant
+							var selectedVariant = productDetails.variants.find(
+								variant => {
+									return variant.shopifyId === e.target.value;
+								}
+							);
+							// pass that variant to your state
+							setVariant(selectedVariant);
 						}}
 					>
 						{productDetails.variants.map((variant, i) => {
 							return (
-								<option value={variant.shopifyId}>
+								//  pass the variants unique shopify ID
+								<option value={variant.shopifyId} key={i}>
 									{variant.title}
 								</option>
 							);

@@ -24,11 +24,11 @@ const LineItems = props => {
                         from the Global State Added Property
                         we will use title here
                     */}
-					<RemoveProduct title={item.title} />
+					<RemoveProduct title={item.chosenVariant.title} />
 				</Flex>
 
 				<Styled.li sx={{ marginLeft: "auto" }}>
-					{item.quantity} x {item.variants[0].price}
+					{item.chosenVariant.quantity} x {item.chosenVariant.price}
 				</Styled.li>
 			</Container>
 		);
