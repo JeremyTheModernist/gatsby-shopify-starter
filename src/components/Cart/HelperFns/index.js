@@ -14,9 +14,11 @@ export const getTotalItems = added => {
 	// measure totals by grabbing them out of the store.
 	var totalItems = 0;
 	//  need to measure all items in the "added" property
-	added.forEach(item => {
-		totalItems += item.chosenVariant.quantity;
-	});
+	if (added) {
+		added.forEach(item => {
+			totalItems += item.chosenVariant.quantity;
+		});
+	}
 	return totalItems;
 };
 
