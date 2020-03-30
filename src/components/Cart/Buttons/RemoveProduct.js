@@ -14,7 +14,8 @@ const RemoveProduct = props => {
 		<Text
 			onClick={() => removeCartItem(store, setStore, props)}
 			variant={"interactive.toPrimary"}
-			sx={{ width: "25%" }}
+			as={"h6"}
+			sx={{ width: "25%", marginTop: "10px" }}
 		>
 			Remove
 		</Text>

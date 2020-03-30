@@ -13,6 +13,7 @@ var { useContext, useState } = React;
 const CheckoutButton = props => {
 	//  retrieve client from context;
 	var [store, setStore] = useContext(StoreContext);
+	//  create the state for your spinner
 	var [state, setState] = useState(false);
 
 	const createNewCheckout = () => {

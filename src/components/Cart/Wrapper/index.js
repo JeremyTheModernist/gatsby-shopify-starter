@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Button, Container } from "theme-ui";
+import { jsx, Flex, Styled, Button } from "theme-ui";
 import { Link } from "gatsby";
 
 import { getTotalPrice } from "../HelperFns/index";
@@ -7,24 +7,26 @@ import { getTotalPrice } from "../HelperFns/index";
 import CheckoutButton from "../Buttons/CheckoutButton";
 import LineItems from "../LineItems/index";
 
+import {
+	containerStyles,
+	buttonWrapperStyles,
+	checkoutButtonStyles,
+	priceStyles
+} from "./styles";
+
 const Wrapper = props => {
 	var { isCartVisible, isVisible, setVisible, added } = props;
 	var totalPrice = getTotalPrice(added);
 	return (
-		<Container
-			variant={"cartWrapper"}
+		<div
+			sx={containerStyles}
 			// check to see if cart has been triggered by a click or adding a product.
 			// show or hide the cart depending on the user action.
 			className={isVisible || isCartVisible ? "showCart" : "hideCart"}
 		>
 			{/* pass "added" state to Cart Item */}
 			<LineItems added={added} />
-			<Flex
-				sx={{
-					alignItems: "center",
-					marginTop: 2
-				}}
-			>
+			<div sx={buttonWrapperStyles}>
 				<Link to="/cart">
 					<Button
 						variant="primary"
@@ -37,27 +39,13 @@ const Wrapper = props => {
 				</Link>
 
 				<CheckoutButton>
-					<Button
-						variant="secondary"
-						sx={{
-							backgroundColor: "white",
-							marginLeft: 1,
-							alignSelf: "flex-end"
-						}}
-					>
+					<Button variant="secondary" sx={checkoutButtonStyles}>
 						Checkout
 					</Button>
 				</CheckoutButton>
-				<Styled.li
-					sx={{
-						marginLeft: "auto",
-						color: "grays.0"
-					}}
-				>
-					${totalPrice}
-				</Styled.li>
-			</Flex>
-		</Container>
+				<p sx={priceStyles}>${totalPrice}</p>
+			</div>
+		</div>
 	);
 };
 

@@ -1,42 +1,50 @@
 // calculate cart Total:
 // get the total value of all items in cart by retrieving all the added items and adding up price * quantity for each
 export const getTotalPrice = added => {
-	var cartTotal = added.reduce((accVal, curVal) => {
-		var { price } = curVal.variants[0];
-		var { quantity } = curVal;
-		return (accVal += price * quantity);
+	var cartTotal = added.reduce((totalPrice, product) => {
+		var { chosenVariant } = product;
+		var { price, quantity } = chosenVariant;
+		return (totalPrice += price * quantity);
 	}, 0);
 	return cartTotal;
 };
 
+// used to display total number `3 items in cart`
 export const getTotalItems = added => {
 	// measure totals by grabbing them out of the store.
-	// used to display total number `3 items in cart`
 	var totalItems = 0;
 	//  need to measure all items in the "added" property
 	added.forEach(item => {
-		totalItems += item.quantity;
+		totalItems += item.chosenVariant.quantity;
 	});
 	return totalItems;
 };
 
-export const addCartItem = (productDetails, added, count) => {
-	//  added is all of the items currently added in my cart.
-	//  adding quantity to show how many of each item
+//  added is all of the items currently added in my cart.
+export const addCartItem = (product, variant, amount, added) => {
+	//  product = all data around a product.
+	//  variant = the specefic Shopify Item variant that was added
+	//  amount is how many items we're added
+	//  added = all added cart items
 
 	//  figure out if the item exists in your cart already and what index it is
 	var itemIndex = added.findIndex(item => {
-		return item.title.includes(productDetails.title);
+		// find the item with a variant that includes the incoming variant.
+		return item.chosenVariant.shopifyId.includes(variant.shopifyId);
 	});
 	//  if the cart does include the item then just increment its quantity by
-	//  the count selected on the product
+	//  the amount selected on the product
 	if (itemIndex > -1) {
-		added[itemIndex].quantity += count;
+		added[itemIndex].chosenVariant.quantity += amount;
 	}
 	//  if it doesn't include the item, then push a whole new item to the cart
 	//  this includes all of the products data
+	//  create a new property on added called chosenVariant, that represents the selected variant.
 	else {
-		added.push({ ...productDetails, quantity: count });
+		added.push({
+			...product,
+			chosenVariant: { ...variant, quantity: amount }
+		});
 	}
 	// set the local storage:
 	localStorage.setItem(`added`, JSON.stringify(added));
@@ -48,10 +56,11 @@ export const removeCartItem = ({ added }, setStore, props) => {
 	setStore(curStore => {
 		//  look at the current store and remove the on that the user has selected.
 		var updatedAdded = added.filter(item => {
-			// need to return all items that DO NOT match the removed items title
-			// I get access to title from the Cart.js component;
-			return !item.title.includes(props.title);
+			// need to return all items that DO NOT match the removed item's shopify ID.
+			// I get access to shopifyId from the LineItems component;
+			return !item.chosenVariant.shopifyId.includes(props.shopifyId);
 		});
+
 		// set the local storage:
 		localStorage.setItem(`added`, JSON.stringify(updatedAdded));
 		// now need to updated the store
@@ -99,13 +108,13 @@ export const addCheckoutItems = ({ ShopifyCheckout }, setStore) => {
 	setStore(curStore => {
 		// add all the cartItems to Shopify Checkout
 		curStore.added.forEach(item => {
-			console.log(item.variants[0].shopifyId);
+			// when using ShopifyBuy API, you only need the Shopify Variant ID,
+			// and the variant quantity for each product
 			var ShopifyItem = {
-				variantId: item.variants[0].shopifyId,
-				quantity: item.quantity
+				variantId: item.chosenVariant.shopifyId,
+				quantity: item.chosenVariant.quantity
 			};
 			ShopifyCheckout.lineItems.push(ShopifyItem);
-			console.log("SHOPIFY CHECKOUT ITEMS", ShopifyCheckout);
 		});
 		return {
 			// pass client and added back to store

@@ -26,7 +26,7 @@ const Cart = () => {
 			// find that item within the Global Store Added array
 			// change it's quantity to whatever is selected in the drop down fieled
 			// e.g. e.target.value
-			selectedItem.quantity = selectValue;
+			selectedItem.chosenVariant.quantity = selectValue;
 			// set the local storage:
 			localStorage.setItem(`added`, JSON.stringify(added));
 			// return the newly updated cart
@@ -53,14 +53,7 @@ const Cart = () => {
 			<Flex sx={{ marginTop: 2 }}>
 				<div sx={{ marginLeft: "auto" }}>
 					<CheckoutButton>
-						<Button
-							variant="secondary"
-							sx={{
-								backgroundColor: "white"
-							}}
-						>
-							Checkout
-						</Button>
+						<Button variant="primary">Checkout</Button>
 					</CheckoutButton>
 				</div>
 			</Flex>
@@ -85,12 +78,13 @@ function getListItems(added, changeItemAmount) {
 						width: "50%"
 					}}
 				>
-					<Styled.li sx={{ marginBottom: 1 }}>{item.title}</Styled.li>
+					<Styled.li>{item.title}</Styled.li>
+					{renderVariantTitle(item)}
 					{/* need to pass a unique ID to remove, so it knows which item to remove
 	                    from the Global State Added Property
 	                    we will use title here
 	                */}
-					<RemoveProduct title={item.title} />
+					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
 				</Flex>
 				<Select
 					// make sure it's value equals the items quantity
@@ -98,7 +92,7 @@ function getListItems(added, changeItemAmount) {
 					// use defaultValue for theme-ui select:
 					variant="medium"
 					sx={{ width: "90px" }}
-					defaultValue={item.quantity}
+					defaultValue={item.chosenVariant.quantity}
 					onChange={e => {
 						// this function get's passed the event and the index of the item
 						changeItemAmount(e, i);
@@ -111,9 +105,21 @@ function getListItems(added, changeItemAmount) {
 					<option value={5}>5</option>
 				</Select>
 				<Styled.li sx={{ marginLeft: "auto" }}>
-					{item.quantity} x {item.variants[0].price}
+					{item.chosenVariant.quantity} x {item.chosenVariant.price}
 				</Styled.li>
 			</Container>
 		);
 	});
 }
+
+const renderVariantTitle = item => {
+	return item.variants.length > 1 ? (
+		<Styled.li
+			sx={{
+				fontSize: 0
+			}}
+		>
+			{item.chosenVariant.title}
+		</Styled.li>
+	) : null;
+};

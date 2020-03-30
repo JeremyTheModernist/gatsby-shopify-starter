@@ -50,7 +50,7 @@ const Cart = () => {
 				zIndex: 10
 			}}
 		>
-			<Text onClick={toggleCart} variant={"interactive.toBlack"}>
+			<Text onClick={toggleCart} variant={"interactive.toBlack"} as={"p"}>
 				{totalItems} items in Cart
 			</Text>
 			<Wrapper {...WrapperProps} />

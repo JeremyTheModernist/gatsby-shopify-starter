@@ -20,28 +20,6 @@ export const components = {
 			alignItems: "center",
 			borderBottom: props => `1px solid ${props.colors.grays[6]}`
 		},
-		cartWrapper: {
-			width: ["100%", 1, 1],
-			padding: 1,
-			backgroundColor: "white",
-			marginTop: 2,
-			marginRight: [null, null, 2],
-			border: `1px solid rgba(0,0,0,.1)`,
-			borderRadius: 1,
-			boxShadow: 2,
-			position: "absolute",
-			right: 0,
-			"&.hideCart": {
-				visibility: "hidden",
-				opacity: 0,
-				transition: "0.2s ease-in-out"
-			},
-			"&.showCart": {
-				visibility: "visible",
-				opacity: 1,
-				transition: "0.2s ease-in-out"
-			}
-		},
 		cartWrapperLarge: {
 			flexFlow: "column wrap",
 			backgroundColor: "white",
@@ -58,7 +36,10 @@ export const components = {
 			fontWeight: "bold",
 			color: "white",
 			background: "primary",
-			padding: props => `${props.space[1]}px ${props.space[2]}px`,
+			paddingTop: 1,
+			paddingBottom: 1,
+			paddingLeft: 2,
+			paddingRight: 2,
 			transition: props => `${props.transitions[0]}s`,
 			"&:hover": {
 				background: props => props.colors.grays[0],
@@ -72,7 +53,10 @@ export const components = {
 			color: "primary",
 			border: props => `1px solid ${props.colors.primary}`,
 			backgroundColor: "grays.7",
-			padding: props => `${props.space[1]}px ${props.space[2]}px`,
+			paddingTop: 1,
+			paddingBottom: 1,
+			paddingLeft: 2,
+			paddingRight: 2,
 			transition: props => `${props.transitions[0]}s`,
 			"&:hover": {
 				background: props => props.colors.primary,
