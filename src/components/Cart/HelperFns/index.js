@@ -1,10 +1,10 @@
 // calculate cart Total:
 // get the total value of all items in cart by retrieving all the added items and adding up price * quantity for each
 export const getTotalPrice = added => {
-	var cartTotal = added.reduce((accVal, curVal) => {
-		var { chosenVariant } = curVal;
+	var cartTotal = added.reduce((totalPrice, product) => {
+		var { chosenVariant } = product;
 		var { price, quantity } = chosenVariant;
-		return (accVal += price * quantity);
+		return (totalPrice += price * quantity);
 	}, 0);
 	return cartTotal;
 };
@@ -21,26 +21,29 @@ export const getTotalItems = added => {
 };
 
 //  added is all of the items currently added in my cart.
-export const addCartItem = (productDetails, added, variant, count) => {
-	//  adding quantity to show how many of each item
+export const addCartItem = (product, variant, amount, added) => {
+	//  product = all data around a product.
+	//  variant = the specefic Shopify Item variant that was added
+	//  amount is how many items we're added
+	//  added = all added cart items
 
 	//  figure out if the item exists in your cart already and what index it is
 	var itemIndex = added.findIndex(item => {
-		// find the item variant that includes the variant being added from the product page.
+		// find the item with a variant that includes the incoming variant.
 		return item.chosenVariant.shopifyId.includes(variant.shopifyId);
 	});
 	//  if the cart does include the item then just increment its quantity by
-	//  the count selected on the product
+	//  the amount selected on the product
 	if (itemIndex > -1) {
-		added[itemIndex].chosenVariant.quantity += count;
+		added[itemIndex].chosenVariant.quantity += amount;
 	}
 	//  if it doesn't include the item, then push a whole new item to the cart
 	//  this includes all of the products data
 	//  create a new property on added called chosenVariant, that represents the selected variant.
 	else {
 		added.push({
-			...productDetails,
-			chosenVariant: { ...variant, quantity: count }
+			...product,
+			chosenVariant: { ...variant, quantity: amount }
 		});
 	}
 	// set the local storage:
@@ -53,10 +56,11 @@ export const removeCartItem = ({ added }, setStore, props) => {
 	setStore(curStore => {
 		//  look at the current store and remove the on that the user has selected.
 		var updatedAdded = added.filter(item => {
-			// need to return all items that DO NOT match the removed items title
-			// I get access to title from the Cart.js component;
-			return !item.chosenVariant.title.includes(props.title);
+			// need to return all items that DO NOT match the removed item's shopify ID.
+			// I get access to shopifyId from the LineItems component;
+			return !item.chosenVariant.shopifyId.includes(props.shopifyId);
 		});
+
 		// set the local storage:
 		localStorage.setItem(`added`, JSON.stringify(updatedAdded));
 		// now need to updated the store

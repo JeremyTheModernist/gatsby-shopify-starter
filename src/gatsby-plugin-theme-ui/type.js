@@ -10,6 +10,11 @@ export const type = {
 		heading: "bold"
 	},
 	text: {
+		display: {
+			letterSpacing: "-.01em",
+			fontWeight: "heading",
+			fontSize: [5, 6, 7]
+		},
 		caps: {
 			textTransform: "uppercase",
 			letterSpacing: ".2em"
@@ -17,10 +22,10 @@ export const type = {
 		body: {
 			fontSize: [1]
 		},
-		display: {
-			letterSpacing: "-.01em",
-			fontWeight: "heading",
-			fontSize: [5, 6, 7]
+		caption: {
+			fontSize: 0,
+			color: "grays.3",
+			lineHeight: 2
 		},
 		interactive: {
 			toBlack: {

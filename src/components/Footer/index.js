@@ -1,21 +1,12 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button, Text } from "theme-ui";
+import { jsx, Flex, Text } from "theme-ui";
 import React from "react";
 import { Link, graphql, navigate } from "gatsby";
+import { containerStyles } from "./styles";
 
 const Footer = () => {
 	return (
-		<Flex
-			sx={{
-				backgroundColor: "grays.6",
-				paddingTop: 3,
-				paddingBottom: 6,
-				paddingLeft: 3,
-				paddingRight: 3,
-				marginTop: 5,
-				alignContent: "flex-start"
-			}}
-		>
+		<Flex sx={containerStyles}>
 			<Text variant="body" sx={{ color: "text" }}>
 				Modernist Design Books
 			</Text>

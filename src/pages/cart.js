@@ -53,14 +53,7 @@ const Cart = () => {
 			<Flex sx={{ marginTop: 2 }}>
 				<div sx={{ marginLeft: "auto" }}>
 					<CheckoutButton>
-						<Button
-							variant="secondary"
-							sx={{
-								backgroundColor: "white"
-							}}
-						>
-							Checkout
-						</Button>
+						<Button variant="primary">Checkout</Button>
 					</CheckoutButton>
 				</div>
 			</Flex>
@@ -85,12 +78,13 @@ function getListItems(added, changeItemAmount) {
 						width: "50%"
 					}}
 				>
-					<Styled.li sx={{ marginBottom: 1 }}>{item.title}</Styled.li>
+					<Styled.li>{item.title}</Styled.li>
+					{renderVariantTitle(item)}
 					{/* need to pass a unique ID to remove, so it knows which item to remove
 	                    from the Global State Added Property
 	                    we will use title here
 	                */}
-					<RemoveProduct title={item.chosenVariant.title} />
+					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
 				</Flex>
 				<Select
 					// make sure it's value equals the items quantity
@@ -117,3 +111,15 @@ function getListItems(added, changeItemAmount) {
 		);
 	});
 }
+
+const renderVariantTitle = item => {
+	return item.variants.length > 1 ? (
+		<Styled.li
+			sx={{
+				fontSize: 0
+			}}
+		>
+			{item.chosenVariant.title}
+		</Styled.li>
+	) : null;
+};

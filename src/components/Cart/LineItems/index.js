@@ -1,38 +1,47 @@
 /** @jsx jsx */
-import { jsx, Container, Flex, Styled } from "theme-ui";
+import { jsx, Text, Styled } from "theme-ui";
 import RemoveProduct from "../Buttons/RemoveProduct";
 import Img from "gatsby-image";
+
+import {
+	containerStyles,
+	itemWrapperStyles,
+	titleStyles,
+	variantStyles
+} from "./styles";
 
 const LineItems = props => {
 	var { added } = props;
 	return added.map((item, i) => {
 		return (
-			<Container variant={"cartItem"} key={i}>
+			<div sx={containerStyles} key={i}>
 				<li sx={{ width: "20%" }}>
 					<Img
 						fluid={item.images[0].localFile.childImageSharp.fluid}
 					></Img>
 				</li>
-				<Flex
-					sx={{
-						flexFlow: "column nowrap",
-						width: "50%"
-					}}
-				>
-					<Styled.li sx={{ marginBottom: 1 }}>{item.title}</Styled.li>
+				<div sx={itemWrapperStyles}>
+					<li sx={titleStyles}>{item.title}</li>
+					{renderVariantTitle(item)}
 					{/* need to pass a unique ID to remove, so it knows which item to remove
                         from the Global State Added Property
                         we will use title here
                     */}
-					<RemoveProduct title={item.chosenVariant.title} />
-				</Flex>
+					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
+				</div>
 
 				<Styled.li sx={{ marginLeft: "auto" }}>
 					{item.chosenVariant.quantity} x {item.chosenVariant.price}
 				</Styled.li>
-			</Container>
+			</div>
 		);
 	});
 };
 
 export default LineItems;
+
+const renderVariantTitle = item => {
+	return item.variants.length > 1 ? (
+		<li sx={variantStyles}>{item.chosenVariant.title}</li>
+	) : null;
+};
