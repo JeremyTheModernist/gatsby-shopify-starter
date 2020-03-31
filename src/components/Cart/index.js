@@ -7,6 +7,8 @@ import { getTotalItems } from "./HelperFns/index";
 
 import Wrapper from "./Wrapper/index";
 
+import { cartTextStyles } from "./styles";
+
 var { useState, useEffect, useContext, createRef } = React;
 
 const Cart = () => {
@@ -50,7 +52,12 @@ const Cart = () => {
 				zIndex: 10
 			}}
 		>
-			<Text onClick={toggleCart} variant={"interactive.toBlack"} as={"p"}>
+			<Text
+				sx={cartTextStyles}
+				variant={"interactive.toBlack"}
+				as={"p"}
+				onClick={toggleCart}
+			>
 				{totalItems} items in Cart
 			</Text>
 			<Wrapper {...WrapperProps} />

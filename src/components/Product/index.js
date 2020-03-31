@@ -1,8 +1,10 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container } from "theme-ui";
+import { jsx, Flex, Text, Container } from "theme-ui";
 import AddToCart from "../AddToCart";
 import OutOfStock from "../Cart/Buttons/OutOfStock";
 import Img from "gatsby-image";
+
+import { descriptionStyles, titleStyles } from "./styles";
 
 const Product = props => {
 	var { product } = props;
@@ -12,8 +14,12 @@ const Product = props => {
 				<Img
 					fluid={product.images[0].localFile.childImageSharp.fluid}
 				></Img>
-				<Styled.h2>{product.title}</Styled.h2>
-				<Styled.p>{product.description}</Styled.p>
+				<Text variant="title" sx={titleStyles} as="h1">
+					{product.title}
+				</Text>
+				<Text variant="body" sx={descriptionStyles} as="p">
+					{product.description}
+				</Text>
 				<AddToCart
 					//  pass down all of the data I retrieve for each product
 					//  then I can use to add the right products to the cart when Add to Cart is clicked.
