@@ -1,15 +1,14 @@
 // calculate cart Total:
 // get the total value of all items in cart by retrieving all the added items and adding up price * quantity for each
 export const getTotalPrice = added => {
-	var cartTotal = added.reduce((totalPrice, product) => {
-		if (product.chosenVariant) {
+	var cartTotal = 0;
+	if (added.length > 0) {
+		cartTotal = added.reduce((totalPrice, product) => {
 			var { chosenVariant } = product;
 			var { price, quantity } = chosenVariant;
 			return (totalPrice += price * quantity);
-		} else {
-			return totalPrice;
-		}
-	}, 0);
+		}, 0);
+	}
 	return cartTotal;
 };
 
@@ -18,12 +17,11 @@ export const getTotalItems = added => {
 	// measure totals by grabbing them out of the store.
 	var totalItems = 0;
 	//  need to measure all items in the "added" property
-
-	added.forEach(item => {
-		if (added.item !== undefined && item.chosenVariant !== undefined) {
+	if (added.length > 0) {
+		added.forEach(item => {
 			totalItems += item.chosenVariant.quantity;
-		}
-	});
+		});
+	}
 
 	return totalItems;
 };
@@ -61,22 +59,24 @@ export const addCartItem = (product, variant, amount, added) => {
 
 //  a function to remove items from the cart
 export const removeCartItem = ({ added }, setStore, props) => {
-	setStore(curStore => {
-		//  look at the current store and remove the on that the user has selected.
-		var updatedAdded = added.filter(item => {
-			// need to return all items that DO NOT match the removed item's shopify ID.
-			// I get access to shopifyId from the LineItems component;
-			return !item.chosenVariant.shopifyId.includes(props.shopifyId);
-		});
+	if (added.length > 0) {
+		setStore(curStore => {
+			//  look at the current store and remove the on that the user has selected.
+			var updatedAdded = added.filter(item => {
+				// need to return all items that DO NOT match the removed item's shopify ID.
+				// I get access to shopifyId from the LineItems component;
+				return !item.chosenVariant.shopifyId.includes(props.shopifyId);
+			});
 
-		// set the local storage:
-		localStorage.setItem(`added`, JSON.stringify(updatedAdded));
-		// now need to updated the store
-		return {
-			...curStore,
-			added: updatedAdded
-		};
-	});
+			// set the local storage:
+			localStorage.setItem(`added`, JSON.stringify(updatedAdded));
+			// now need to updated the store
+			return {
+				...curStore,
+				added: updatedAdded
+			};
+		});
+	} else return;
 };
 
 export const addLocalStorageToCart = setStore => {
