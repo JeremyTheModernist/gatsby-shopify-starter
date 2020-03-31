@@ -42,9 +42,7 @@ const LineItems = props => {
 				</div>
 			);
 		});
-	} else {
-		return null;
-	}
+	} else return;
 };
 
 export default LineItems;
