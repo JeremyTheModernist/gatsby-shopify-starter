@@ -11,22 +11,6 @@ export const components = {
 		small: {
 			width: 1,
 			padding: 1
-		},
-		cartItem: {
-			display: "flex",
-			flexFlow: "row wrap",
-			paddingTop: 1,
-			paddingBottom: 1,
-			alignItems: "center",
-			borderBottom: props => `1px solid ${props.colors.grays[6]}`
-		},
-		cartWrapperLarge: {
-			flexFlow: "column wrap",
-			backgroundColor: "white",
-			padding: 2,
-			marginTop: 2,
-			borderRadius: 1,
-			boxShadow: 1
 		}
 	},
 	buttons: {

@@ -6,8 +6,8 @@ import Img from "gatsby-image";
 import {
 	containerStyles,
 	itemWrapperStyles,
-	titleStyles,
-	variantStyles
+	variantStyles,
+	productPriceStyles
 } from "./styles";
 
 const LineItems = props => {
@@ -21,7 +21,9 @@ const LineItems = props => {
 					></Img>
 				</li>
 				<div sx={itemWrapperStyles}>
-					<li sx={titleStyles}>{item.title}</li>
+					<Text variant="body" as="li">
+						{item.title}
+					</Text>
 					{renderVariantTitle(item)}
 					{/* need to pass a unique ID to remove, so it knows which item to remove
                             from the Global State Added Property
@@ -30,9 +32,9 @@ const LineItems = props => {
 					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
 				</div>
 
-				<Styled.li sx={{ marginLeft: "auto" }}>
+				<Text variant="body" sx={productPriceStyles} as="li">
 					{item.chosenVariant.quantity} x {item.chosenVariant.price}
-				</Styled.li>
+				</Text>
 			</div>
 		);
 	});

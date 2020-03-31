@@ -1,40 +1,33 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button, Text } from "theme-ui";
-import { graphql, navigate, Link } from "gatsby";
+import { jsx, Flex, Container, Button, Text } from "theme-ui";
+import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
-import React from "react";
-import StoreContext from "../StoreContext/index";
 
-var { useContext } = React;
+import { siteDescriptionStyles } from "./index.styles";
 
 const Index = props => {
 	var {
 		allShopifyProduct,
 		site: { siteMetadata }
 	} = props.data;
-	console.log(allShopifyProduct);
-	var [store, setStore] = useContext(StoreContext);
-	console.log("my context!", store);
+
 	return (
 		<div>
 			<div sx={{ marginLeft: 2, marginRight: 2 }}>
 				<Text
 					variant={"display"}
 					sx={{ marginTop: 4, textAlign: "center" }}
+					as="h1"
 				>
 					{siteMetadata.title}
 				</Text>
-				<Styled.p sx={{ textAlign: "center", marginBottom: 3 }}>
+				<Text variant="body" sx={siteDescriptionStyles} as="p">
 					{siteMetadata.description}
-				</Styled.p>
+				</Text>
 			</div>
 
 			<Flex sx={{ flexFlow: "row wrap" }}>
 				{allShopifyProduct.edges.map(({ node }, i) => {
-					console.log(
-						"image",
-						node.images[0].localFile.childImageSharp.fluid
-					);
 					return (
 						<Container variant="medium" key={i}>
 							<Img
@@ -43,19 +36,17 @@ const Index = props => {
 										.fluid
 								}
 							></Img>
-							<Styled.h2>{node.title}</Styled.h2>
-							<Link to={`product/${node.handle}/`}>
-								<Button
-									variant="primary"
-									// onClick={() =>
-									// 	navigate(`product/${node.handle}/`)
-									// }
-								>
-									View Product
-								</Button>
+							<Text
+								variant="title"
+								sx={{ marginTop: 1, marginBottom: 1 }}
+								as="h2"
+							>
+								{node.title}
+							</Text>
+							{/* use Gatsby Link component, to make it local begin with / */}
+							<Link to={`/product/${node.handle}/`}>
+								<Button variant="primary">View Product</Button>
 							</Link>
-
-							{/* <Styled.p>{node.description}</Styled.p> */}
 						</Container>
 					);
 				})}

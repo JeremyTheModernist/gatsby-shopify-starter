@@ -7,7 +7,8 @@ export const type = {
 	letterSpacing: [-0.1, 0, 0.1],
 	fontSizes: [13, 16, 21, 26, 34, 48, 54, 63],
 	fontWeights: {
-		heading: "bold"
+		heading: "bold",
+		normal: "normal"
 	},
 	text: {
 		display: {
@@ -15,12 +16,19 @@ export const type = {
 			fontWeight: "heading",
 			fontSize: [5, 6, 7]
 		},
+		title: {
+			fontSize: 3,
+			lineHeight: 2,
+			fontWeight: "heading"
+		},
+		body: {
+			fontSize: [1],
+			lineHeight: 2,
+			fontWeight: "normal"
+		},
 		caps: {
 			textTransform: "uppercase",
 			letterSpacing: ".2em"
-		},
-		body: {
-			fontSize: [1]
 		},
 		caption: {
 			fontSize: 0,
@@ -29,9 +37,6 @@ export const type = {
 		},
 		interactive: {
 			toBlack: {
-				fontSize: 1,
-				color: "grays.3",
-				lineHeight: 2,
 				cursor: "pointer",
 				transition: props => `${props.transitions[0]}s`,
 				"&:hover": {
@@ -40,12 +45,6 @@ export const type = {
 				}
 			},
 			toPrimary: {
-				fontSize: 0,
-				fontWeight: "bold",
-				textTransform: "uppercase",
-				letterSpacing: props => `${props.letterSpacing[2]}rem`,
-				color: "grays.4",
-				lineHeight: 2,
 				cursor: "pointer",
 				transition: props => `${props.transitions[0]}s`,
 				"&:hover": {
@@ -64,35 +63,11 @@ export const type = {
 			backgroundColor: "grays.7",
 			li: {
 				listStyleType: "none"
+			},
+			a: {
+				color: "inherit",
+				textDecoration: "none"
 			}
-		},
-		h1: {
-			fontSize: 4
-		},
-		h2: {
-			fontSize: 3
-		},
-		h3: {
-			fontSize: 2
-		},
-		h4: {
-			fontSize: 1,
-			margin: 0
-		},
-		h5: {
-			fontSize: 0,
-			margin: 0,
-			padding: 0
-		},
-		p: {
-			fontSize: 1,
-			color: "grays.3",
-			lineHeight: 2
-		},
-		li: {
-			fontSize: 1,
-			color: "grays.3",
-			lineHeight: 2
 		}
 	}
 };

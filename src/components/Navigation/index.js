@@ -1,26 +1,17 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled } from "theme-ui";
+import { jsx, Flex, Styled, Text } from "theme-ui";
 import { Link } from "gatsby";
 import Cart from "../Cart/index";
 
-import { containerStyles, sitenameStyles } from "./styles";
-
-import StoreContext from "../../StoreContext/index.js";
+import { containerStyles } from "./styles";
 
 const Navigation = () => {
 	return (
 		<Flex sx={containerStyles}>
-			<Link
-				sx={{
-					color: "inherit",
-					textDecoration: "none",
-					marginRight: "auto"
-				}}
-				to="/"
-			>
-				<Styled.h4 sx={sitenameStyles}>
+			<Link sx={{ marginRight: "auto" }} to="/">
+				<Text variant={"interactive.toPrimary"} as={"h4"}>
 					Modernist Design Books
-				</Styled.h4>
+				</Text>
 			</Link>
 			<Cart />
 		</Flex>

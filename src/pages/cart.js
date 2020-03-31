@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Styled, Container, Button, Select } from "theme-ui";
+import { jsx, Text, Flex, Styled, Container, Button, Select } from "theme-ui";
 import RemoveProduct from "../components/Cart/Buttons/RemoveProduct";
 import CheckoutButton from "../components/Cart/Buttons/CheckoutButton";
 import Img from "gatsby-image";
@@ -9,6 +9,14 @@ import {
 	getTotalItems,
 	getTotalPrice
 } from "../components/Cart/HelperFns/index";
+
+import {
+	cartWrapperStyles,
+	totalPriceStyles,
+	cartItem,
+	variantStyles,
+	productPriceStyles
+} from "./cart.styles";
 
 var { useContext } = React;
 
@@ -37,18 +45,12 @@ const Cart = () => {
 		});
 	};
 	return (
-		<Container variant="cartWrapperLarge">
+		<div sx={cartWrapperStyles}>
 			{added.length > 0 ? getListItems(added, changeItemAmount) : null}
 			<Flex sx={{ marginTop: 2 }}>
-				<Styled.li
-					sx={{
-						marginLeft: "auto",
-						color: "text",
-						fontWeight: "bold"
-					}}
-				>
+				<Text variant="body" sx={totalPriceStyles} as="h3">
 					Total: ${getTotalPrice(added)} USD
-				</Styled.li>
+				</Text>
 			</Flex>
 			<Flex sx={{ marginTop: 2 }}>
 				<div sx={{ marginLeft: "auto" }}>
@@ -57,7 +59,7 @@ const Cart = () => {
 					</CheckoutButton>
 				</div>
 			</Flex>
-		</Container>
+		</div>
 	);
 };
 
@@ -66,7 +68,7 @@ export default Cart;
 function getListItems(added, changeItemAmount) {
 	return added.map((item, i) => {
 		return (
-			<Container variant={"cartItem"} key={i}>
+			<div sx={cartItem} key={i}>
 				<li sx={{ width: "10%", marginRight: 2 }}>
 					<Img
 						fluid={item.images[0].localFile.childImageSharp.fluid}
@@ -78,7 +80,9 @@ function getListItems(added, changeItemAmount) {
 						width: "50%"
 					}}
 				>
-					<Styled.li>{item.title}</Styled.li>
+					<Text variant="body" as="li">
+						{item.title}
+					</Text>
 					{renderVariantTitle(item)}
 					{/* need to pass a unique ID to remove, so it knows which item to remove
                             from the Global State Added Property
@@ -104,22 +108,16 @@ function getListItems(added, changeItemAmount) {
 					<option value={4}>4</option>
 					<option value={5}>5</option>
 				</Select>
-				<Styled.li sx={{ marginLeft: "auto" }}>
+				<Text variant="body" sx={productPriceStyles} as="li">
 					{item.chosenVariant.quantity} x {item.chosenVariant.price}
-				</Styled.li>
-			</Container>
+				</Text>
+			</div>
 		);
 	});
 }
 
 const renderVariantTitle = item => {
 	return item.variants.length > 1 ? (
-		<Styled.li
-			sx={{
-				fontSize: 0
-			}}
-		>
-			{item.chosenVariant.title}
-		</Styled.li>
+		<li sx={variantStyles}>{item.chosenVariant.title}</li>
 	) : null;
 };
