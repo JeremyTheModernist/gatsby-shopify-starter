@@ -16,7 +16,7 @@ import {
 	cartItem,
 	variantStyles,
 	productPriceStyles
-} from "./cart.styles";
+} from "../styles/cart.styles";
 
 var { useContext } = React;
 

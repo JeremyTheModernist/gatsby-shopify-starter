@@ -3,7 +3,7 @@ import { jsx, Flex, Container, Button, Text } from "theme-ui";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 
-import { siteDescriptionStyles } from "./index.styles";
+import { siteDescriptionStyles } from "../styles/index.styles";
 
 const Index = props => {
 	var {
