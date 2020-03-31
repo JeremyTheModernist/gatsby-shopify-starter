@@ -116,7 +116,9 @@ function getListItems(added, changeItemAmount) {
 				</Container>
 			);
 		});
-	} else return;
+	} else {
+		return null;
+	}
 }
 
 const renderVariantTitle = item => {
