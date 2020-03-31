@@ -12,30 +12,39 @@ import {
 
 const LineItems = props => {
 	var { added } = props;
-	return added.map((item, i) => {
-		return (
-			<div sx={containerStyles} key={i}>
-				<li sx={{ width: "20%" }}>
-					<Img
-						fluid={item.images[0].localFile.childImageSharp.fluid}
-					></Img>
-				</li>
-				<div sx={itemWrapperStyles}>
-					<li sx={titleStyles}>{item.title}</li>
-					{renderVariantTitle(item)}
-					{/* need to pass a unique ID to remove, so it knows which item to remove
-                        from the Global State Added Property
-                        we will use title here
-                    */}
-					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
-				</div>
+	if (added.length > 0) {
+		return added.map((item, i) => {
+			return (
+				<div sx={containerStyles} key={i}>
+					<li sx={{ width: "20%" }}>
+						<Img
+							fluid={
+								item.images[0].localFile.childImageSharp.fluid
+							}
+						></Img>
+					</li>
+					<div sx={itemWrapperStyles}>
+						<li sx={titleStyles}>{item.title}</li>
+						{renderVariantTitle(item)}
+						{/* need to pass a unique ID to remove, so it knows which item to remove
+                            from the Global State Added Property
+                            we will use title here
+                        */}
+						<RemoveProduct
+							shopifyId={item.chosenVariant.shopifyId}
+						/>
+					</div>
 
-				<Styled.li sx={{ marginLeft: "auto" }}>
-					{item.chosenVariant.quantity} x {item.chosenVariant.price}
-				</Styled.li>
-			</div>
-		);
-	});
+					<Styled.li sx={{ marginLeft: "auto" }}>
+						{item.chosenVariant.quantity} x{" "}
+						{item.chosenVariant.price}
+					</Styled.li>
+				</div>
+			);
+		});
+	} else {
+		return null;
+	}
 };
 
 export default LineItems;
