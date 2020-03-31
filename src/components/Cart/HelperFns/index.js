@@ -76,7 +76,9 @@ export const removeCartItem = ({ added }, setStore, props) => {
 				added: updatedAdded
 			};
 		});
-	} else return;
+	} else {
+		return null;
+	}
 };
 
 export const addLocalStorageToCart = setStore => {

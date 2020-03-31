@@ -38,7 +38,7 @@ const Cart = () => {
 	};
 	return (
 		<Container variant="cartWrapperLarge">
-			{getListItems(added, changeItemAmount)}
+			{added.length > 0 ? getListItems(added, changeItemAmount) : null}
 			<Flex sx={{ marginTop: 2 }}>
 				<Styled.li
 					sx={{
@@ -64,61 +64,52 @@ const Cart = () => {
 export default Cart;
 
 function getListItems(added, changeItemAmount) {
-	if (added.length > 0) {
-		return added.map((item, i) => {
-			return (
-				<Container variant={"cartItem"} key={i}>
-					<li sx={{ width: "10%", marginRight: 2 }}>
-						<Img
-							fluid={
-								item.images[0].localFile.childImageSharp.fluid
-							}
-						></Img>
-					</li>
-					<Flex
-						sx={{
-							flexFlow: "column nowrap",
-							width: "50%"
-						}}
-					>
-						<Styled.li>{item.title}</Styled.li>
-						{renderVariantTitle(item)}
-						{/* need to pass a unique ID to remove, so it knows which item to remove
+	return added.map((item, i) => {
+		return (
+			<Container variant={"cartItem"} key={i}>
+				<li sx={{ width: "10%", marginRight: 2 }}>
+					<Img
+						fluid={item.images[0].localFile.childImageSharp.fluid}
+					></Img>
+				</li>
+				<Flex
+					sx={{
+						flexFlow: "column nowrap",
+						width: "50%"
+					}}
+				>
+					<Styled.li>{item.title}</Styled.li>
+					{renderVariantTitle(item)}
+					{/* need to pass a unique ID to remove, so it knows which item to remove
                             from the Global State Added Property
                             we will use title here
                         */}
-						<RemoveProduct
-							shopifyId={item.chosenVariant.shopifyId}
-						/>
-					</Flex>
-					<Select
-						// make sure it's value equals the items quantity
-						// value={item.quantity}
-						// use defaultValue for theme-ui select:
-						variant="medium"
-						sx={{ width: "90px" }}
-						defaultValue={item.chosenVariant.quantity}
-						onChange={e => {
-							// this function get's passed the event and the index of the item
-							changeItemAmount(e, i);
-						}}
-					>
-						<option value={1}>1</option>
-						<option value={2}>2</option>
-						<option value={3}>3</option>
-						<option value={4}>4</option>
-						<option value={5}>5</option>
-					</Select>
-					<Styled.li sx={{ marginLeft: "auto" }}>
-						{item.chosenVariant.quantity} x{" "}
-						{item.chosenVariant.price}
-					</Styled.li>
-				</Container>
-			);
-		});
-	} else {
-		return null;
-	}
+					<RemoveProduct shopifyId={item.chosenVariant.shopifyId} />
+				</Flex>
+				<Select
+					// make sure it's value equals the items quantity
+					// value={item.quantity}
+					// use defaultValue for theme-ui select:
+					variant="medium"
+					sx={{ width: "90px" }}
+					defaultValue={item.chosenVariant.quantity}
+					onChange={e => {
+						// this function get's passed the event and the index of the item
+						changeItemAmount(e, i);
+					}}
+				>
+					<option value={1}>1</option>
+					<option value={2}>2</option>
+					<option value={3}>3</option>
+					<option value={4}>4</option>
+					<option value={5}>5</option>
+				</Select>
+				<Styled.li sx={{ marginLeft: "auto" }}>
+					{item.chosenVariant.quantity} x {item.chosenVariant.price}
+				</Styled.li>
+			</Container>
+		);
+	});
 }
 
 const renderVariantTitle = item => {

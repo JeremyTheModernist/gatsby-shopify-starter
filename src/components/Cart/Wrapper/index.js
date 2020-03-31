@@ -25,7 +25,7 @@ const Wrapper = props => {
 			className={isVisible || isCartVisible ? "showCart" : "hideCart"}
 		>
 			{/* pass "added" state to Cart Item */}
-			<LineItems added={added} />
+			{added.length > 0 ? <LineItems added={added} /> : null}
 			<div sx={buttonWrapperStyles}>
 				<Link to="/cart">
 					<Button
