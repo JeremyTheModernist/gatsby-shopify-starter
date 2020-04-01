@@ -18,7 +18,7 @@ export const type = {
 		},
 		title: {
 			fontSize: 3,
-			lineHeight: 2,
+			lineHeight: 1,
 			fontWeight: "heading"
 		},
 		body: {
