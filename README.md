@@ -2,6 +2,8 @@
 
 This is a Gatsby Shopify Store template, complete with cart and checkout functionality, and styled with [Theme-UI](https://theme-ui.com/). It is available for configuration and use with any Shopify store.
 
+[View the Live Site Here](https://modernist-design-books.netlify.com/)
+
 ## Intended Use
 
 I built this template as an opportunity for others to learn and see how a Gatsby Shopify site can be created. I have supplied several comments throughout the code to help explain what the different parts are doing and how to use them.
@@ -19,6 +21,7 @@ I built this template as an opportunity for others to learn and see how a Gatsby
 
 ## Helpful Resources:
 
+-   [View the Live Site Here](https://modernist-design-books.netlify.com/)
 -   [Build a Gatsby ecommerce site with Shopify](https://www.gatsbyjs.org/docs/building-an-ecommerce-site-with-shopify/)
 -   [Shopify Buy API](https://www.npmjs.com/package/shopify-buy#completing-a-checkout)
 -   [Authenticate a private app with Shopify](https://shopify.dev/tutorials/create-a-checkout-with-storefront-api#completing-the-checkout)
