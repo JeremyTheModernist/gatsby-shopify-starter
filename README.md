@@ -15,7 +15,7 @@ I built this template as an opportunity for others to learn and see how a Gatsby
 -   [Populate your app with products](#populate-your-app-with-products)
 -   [Connect your Gatsby site to Shopify](#connect-your-gatsby-site-to-shopify)
 -   [Use Shopify to trigger builds in Netlify](#use-shopify-to-trigger-builds-in-netlify)
--   [Connect your bank account for transactions:](#connect-your-bank-account-for-transactions:)
+-   [Connect your bank account for transactions](#connect-your-bank-account-for-transactions)
 
 ## Helpful Resources:
 
@@ -77,7 +77,6 @@ I built this template as an opportunity for others to learn and see how a Gatsby
     ```
     GATSBY_SHOP_NAME = jeremy-superhi-project1
     GATSBY_SHOPIFY_ACCESS_TOKEN = a3155a160132b0ae0bf6bc40fa1c0dc0
-
     ```
 
     -   Your `GATSBY_SHOPIFY_ACCESS_TOKEN` will be your `Storefront access token` from your Shopify App.
@@ -86,7 +85,7 @@ I built this template as an opportunity for others to learn and see how a Gatsby
     -   Now, let's update the `GATSBY_SHOPIFY_ACCESS_TOKEN`. You can find this by looking at your Shopify Shop URL:
         -   `https://<yourShopName>.myshopify.com/admin`
         -   copy the `<yourShopName>` portion from the URL, and set `GATSBY_SHOP_NAME` equal to it.
-    -   Now, stop your server and run `gatsby clean`, this clears your cache so you don't run into any problems.
+    -   Now, stop your server and run `gatsby clean`. This clears your cache so you don't run into any problems.
     -   Next, run `yarn develop` and you should see the store populated with your shop items.
 
 ## Use Shopify to trigger builds in Netlify
@@ -111,7 +110,7 @@ If you have deployed your site to Netlify using Continuous Integration with Gith
 
 ## Connect your bank account for transactions:
 
--   If your satisfied with your setup, you can connect your bank account for transactions:
+-   If you're satisfied with your setup, you can connect your bank account for transactions:
 
     -   In your Shopify store, click "Settings." You should see the following:
         ![Shopify Settings Screen](./README_imgs/Shopify_03.jpg)
