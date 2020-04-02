@@ -13,6 +13,7 @@ console.log(
 );
 
 const client = Client.buildClient({
+	// must precede env names with GATSBY to make them available in client
 	storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
 	domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`
 });
