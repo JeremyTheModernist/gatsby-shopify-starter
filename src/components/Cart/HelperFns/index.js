@@ -27,7 +27,7 @@ export const getTotalItems = added => {
 };
 
 //  added is all of the items currently added in my cart.
-export const addCartItem = (product, variant, amount, added) => {
+export const addCartItem = (product, variant, amount, added, setStore) => {
 	//  product = all data around a product.
 	//  variant = the specefic Shopify Item variant that was added
 	//  amount is how many items we're added
@@ -54,7 +54,14 @@ export const addCartItem = (product, variant, amount, added) => {
 	}
 	// set the local storage:
 	localStorage.setItem(`added`, JSON.stringify(added));
-	return added;
+
+	// updated global cart items
+	setStore(curStore => {
+		return {
+			...curStore,
+			added
+		};
+	});
 };
 
 //  a function to remove items from the cart
@@ -76,8 +83,6 @@ export const removeCartItem = ({ added }, setStore, props) => {
 				added: updatedAdded
 			};
 		});
-	} else {
-		return null;
 	}
 };
 

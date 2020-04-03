@@ -37,15 +37,8 @@ const AddToCart = props => {
 		});
 	};
 
-	const updateCartItems = () => {
-		setStore(curStore => {
-			added = addCartItem(product, variant, amount, added);
-			// return the newly updated cart
-			return (store = {
-				...curStore,
-				added
-			});
-		});
+	const handleAddToCart = () => {
+		addCartItem(product, variant, amount, added, setStore);
 		triggerCart(setStore);
 	};
 
@@ -56,7 +49,7 @@ const AddToCart = props => {
 			<Flex>
 				<Button
 					variant="primary"
-					onClick={updateCartItems}
+					onClick={handleAddToCart}
 					sx={{ marginRight: 1 }}
 				>
 					Add Product

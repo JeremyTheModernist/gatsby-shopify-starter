@@ -10,11 +10,13 @@ import {
 	productPriceStyles
 } from "./styles";
 
+import { v4 as uuidv4 } from "uuid";
+
 const LineItems = props => {
 	var { added } = props;
 	return added.map((item, i) => {
 		return (
-			<div sx={containerStyles} key={i}>
+			<div sx={containerStyles} key={uuidv4()}>
 				<li sx={{ width: "20%", marginRight: 1 }}>
 					<Img
 						fluid={item.images[0].localFile.childImageSharp.fluid}

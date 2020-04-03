@@ -3,6 +3,7 @@ import { jsx, Text, Flex, Styled, Container, Button, Select } from "theme-ui";
 import RemoveProduct from "../components/Cart/Buttons/RemoveProduct";
 import CheckoutButton from "../components/Cart/Buttons/CheckoutButton";
 import Img from "gatsby-image";
+import { Link } from "gatsby";
 import React from "react";
 import Store from "../StoreContext/index";
 import {
@@ -12,11 +13,14 @@ import {
 
 import {
 	cartWrapperStyles,
+	continueShoppingStyles,
 	totalPriceStyles,
 	cartItem,
 	variantStyles,
 	productPriceStyles
 } from "../styles/cart.styles";
+
+import { v4 as uuidv4 } from "uuid";
 
 var { useContext } = React;
 
@@ -45,21 +49,28 @@ const Cart = () => {
 		});
 	};
 	return (
-		<div sx={cartWrapperStyles}>
-			{added.length > 0 ? getListItems(added, changeItemAmount) : null}
-			<Flex sx={{ marginTop: 2 }}>
-				<Text variant="body" sx={totalPriceStyles} as="h3">
-					Total: ${getTotalPrice(added)} USD
+		<>
+			<div sx={cartWrapperStyles}>
+				<Text variant="interactive.toBlack" sx={continueShoppingStyles}>
+					<Link to="/">Continue Shopping</Link>
 				</Text>
-			</Flex>
-			<Flex sx={{ marginTop: 2 }}>
-				<div sx={{ marginLeft: "auto" }}>
-					<CheckoutButton>
-						<Button variant="primary">Checkout</Button>
-					</CheckoutButton>
-				</div>
-			</Flex>
-		</div>
+				{added.length > 0
+					? getListItems(added, changeItemAmount)
+					: null}
+				<Flex sx={{ marginTop: 2 }}>
+					<Text variant="body" sx={totalPriceStyles} as="h3">
+						Total: ${getTotalPrice(added)} USD
+					</Text>
+				</Flex>
+				<Flex sx={{ marginTop: 2 }}>
+					<div sx={{ marginLeft: "auto" }}>
+						<CheckoutButton>
+							<Button variant="primary">Checkout</Button>
+						</CheckoutButton>
+					</div>
+				</Flex>
+			</div>
+		</>
 	);
 };
 
@@ -67,8 +78,10 @@ export default Cart;
 
 function getListItems(added, changeItemAmount) {
 	return added.map((item, i) => {
+		console.log("GET LIST ITEMS COUNT", item.chosenVariant.quantity);
+		console.log(`Called ${i + 1} times`);
 		return (
-			<div sx={cartItem} key={i}>
+			<div sx={cartItem} key={uuidv4()}>
 				<li sx={{ width: "10%", marginRight: 2 }}>
 					<Img
 						fluid={item.images[0].localFile.childImageSharp.fluid}
