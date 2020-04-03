@@ -32,3 +32,5 @@ export const productPriceStyles = {
 	color: "grays.3",
 	marginLeft: "auto"
 };
+
+export const continueShoppingStyles = { marginBottom: 2, color: "grays.4" };
