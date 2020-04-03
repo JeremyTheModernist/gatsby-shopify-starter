@@ -136,6 +136,10 @@ export const addCheckoutItems = ({ ShopifyCheckout }, setStore) => {
 
 //  destructure these properties out of the App Store
 export const createShopifyCheckout = ({ client, ShopifyCheckout }) => {
+	// browsers will block pop ups, if they are not directly triggered by users.
+	// so we immediately open a new tab, and then populate it once async call is finished.
+	var checkoutWindow = window.open("", "_blank");
+
 	client.checkout
 		.create()
 		.then(checkout => {
@@ -151,7 +155,8 @@ export const createShopifyCheckout = ({ client, ShopifyCheckout }) => {
 				.then(res => {
 					console.log("adding a checkout", res);
 					// open the checkout in a new tab:
-					window.open(res.webUrl, "_blank");
+					// window.open(res.webUrl, "_blank");
+					checkoutWindow.location.href = res.webUrl;
 					// can also use this https://www.npmjs.com/package/detect-browser to provide different behaviors
 					// for different browsers, like open in same tab for safari to bypass pop-up blockers.
 				});
