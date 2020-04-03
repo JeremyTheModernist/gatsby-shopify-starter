@@ -59,7 +59,7 @@ I built this template as an opportunity for others to learn and see how a Gatsby
     -   Pricing ( Price )
     -   Inventory (Quantity, Track Quantity)
     -   Shipping (Weight, Country of origin)
-    -   Variants (Optional, this template supports variants)
+    -   Variants (Optional, as this starter supports variants)
 -   I would recommend adding at least 2 products, with perhaps some variants ( i.e. in mine, I added a soft cover and a hard cover, for "materials"), see image below:
     ![Shopify Variants Screen](./README_imgs/Shopify_05.jpg)
 
