@@ -1,6 +1,6 @@
 # Gatsby Shopify Starter
 
-This is a Gatsby Shopify Store starter, complete with cart and checkout functionality, and styled with [Theme-UI](https://theme-ui.com/). It is available for configuration and use with any Shopify store.
+This is a Gatsby Shopify Store Starter, complete with cart and checkout functionality, and styled with [Theme-UI](https://theme-ui.com/). It is available for configuration and use with any Shopify store.
 
 [View the Live Site Here](https://modernist-design-books.netlify.com/)
 
